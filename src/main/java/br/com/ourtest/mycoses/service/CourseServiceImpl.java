@@ -5,7 +5,9 @@ import br.com.ourtest.mycoses.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -25,6 +27,17 @@ public class CourseServiceImpl implements CourseService {
         List<Course> courses = repository.findAll();
 
         return courses;
+    }
+
+    @Override
+    public List<Course> findById(Long id) {
+        List<Course> courses = new ArrayList<>();
+
+        Optional<Course> course = repository.findById(id);
+        course.ifPresent(courseFounded -> courses.add(courseFounded));
+
+        return courses;
+
     }
 
     @Override
@@ -66,4 +79,5 @@ public class CourseServiceImpl implements CourseService {
                     return repository.save(course);
                 });
     }
+
 }

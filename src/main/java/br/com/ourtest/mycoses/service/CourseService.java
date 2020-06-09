@@ -9,9 +9,12 @@ public interface CourseService {
 
     List<Course> findAll();
 
+    List<Course> findById(Long id);
+
     Course update (Course course, Long id);
 
     void delete(Long id);
 
     Course updatePatch(Long id, String name);
+
 }

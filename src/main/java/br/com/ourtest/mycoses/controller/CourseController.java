@@ -20,9 +20,17 @@ public class CourseController {
     private CourseService service;
 
     @ApiOperation(value = "Obetendo lista de cursos")
-    @GetMapping(path = "/list")
+    @GetMapping()
     public ResponseEntity<List<Course>> getCourses() {
         List<Course> courses = service.findAll();
+
+        return ResponseEntity.status(HttpStatus.OK).body(courses);
+    }
+
+    @ApiOperation(value = "Obetendo um de curso especifico")
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<List<Course>> getCoursesById(@PathVariable Long id) {
+        List<Course> courses = service.findById(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(courses);
     }
@@ -44,9 +52,9 @@ public class CourseController {
     }
 
     @ApiOperation(value = "Atualizando nome de um curso")
-    @PatchMapping(path = "/update/{id}/{name}")
-    public ResponseEntity<Course> update(@PathVariable Long id, @PathVariable String name) {
-        Course newCourse = service.updatePatch(id, name);
+    @PatchMapping(path = "/update/{id}")
+    public ResponseEntity<Course> update(@PathVariable Long id, @RequestBody Course course) {
+        Course newCourse = service.updatePatch(id, course.getName());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newCourse);
     }
