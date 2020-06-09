@@ -1,0 +1,7 @@
+br/com/ourtest/mycoses/service/CourseService.class
+br/com/ourtest/mycoses/service/CourseServiceImpl.class
+br/com/ourtest/mycoses/configurations/Configuration.class
+br/com/ourtest/mycoses/MycosesApplication.class
+br/com/ourtest/mycoses/model/Course.class
+br/com/ourtest/mycoses/repository/CourseRepository.class
+br/com/ourtest/mycoses/controller/CourseController.class
